@@ -6,7 +6,7 @@
  */
 
 apply plugin: 'com.android.library'
-apply plugin: "com.vanniktech.maven.publish"
+apply from: new File('./../maven-publish.gradle')
 
 
 android {
