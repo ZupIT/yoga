@@ -69,3 +69,5 @@ Carthage/Build
 
 **/.idea/*
 **/.cxx/*
+local.properties
+
