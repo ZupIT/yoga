@@ -8,6 +8,7 @@ platform :android do
   lane :deploy_to_stage do
     gradle(task: "assemble")
     gradle(task: "uploadArchives --no-daemon --no-parallel")
+      gradle(task: "closeAndReleaseRepository")
   end
 
   desc "Deploy current code to production"
