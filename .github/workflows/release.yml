@@ -1,11 +1,10 @@
 name: Beagle Release
 
-on: [ push, pull_request ]
-#on:
-#  workflow_run:
-#    workflows: [ "Beagle Yoga Release" ]
-#    types:
-#      - completed
+on:
+  workflow_run:
+    workflows: [ "Beagle Yoga Release" ]
+    types:
+      - completed
 jobs:
   generate-release:
     name: Generate release
