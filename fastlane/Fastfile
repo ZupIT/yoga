@@ -6,8 +6,8 @@ platform :android do
 
   desc "Deploy current code to stage"
   lane :deploy_to_stage do
-    gradle(project_dir: "android", task: "assemble")
-    gradle(project_dir: "android", task: "uploadArchives --no-daemon --no-parallel")
+    gradle(task: "assemble")
+    gradle(task: "uploadArchives --no-daemon --no-parallel")
   end
 
   desc "Deploy current code to production"
