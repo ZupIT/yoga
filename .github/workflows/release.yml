@@ -1,6 +1,6 @@
 name: Beagle Release
 
-on: [push, pull_request]
+on: [ push, pull_request ]
 #on:
 #  workflow_run:
 #    workflows: [ "Beagle Yoga Release" ]
@@ -11,7 +11,7 @@ jobs:
     name: Generate release
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v2.1.0
+      - uses: actions/checkout@v2
       - name: Read secrets from AWS Secrets Manager into environment variables
         uses: abhilash1in/aws-secrets-manager-action@v1.0.1
         with:
