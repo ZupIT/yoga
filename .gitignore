@@ -70,4 +70,4 @@ Carthage/Build
 **/.idea/*
 **/.cxx/*
 local.properties
-
+Gemfile.lock
