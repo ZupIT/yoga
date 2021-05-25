@@ -1,6 +1,7 @@
 project(yogacore)
 cmake_minimum_required(VERSION 3.4.1)
 set(CMAKE_VERBOSE_MAKEFILE on)
+add_definitions(-DIS_ANDROID=1)
 
 add_compile_options(
     -fno-omit-frame-pointer
