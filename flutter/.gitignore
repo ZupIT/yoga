@@ -3,8 +3,7 @@
 .DS_Store
 
 # IntelliJ related
-.idea/
-!.idea/copyright
+!.idea/copyright/
 
 # Flutter/Dart/Pub related
 .dart_tool/
