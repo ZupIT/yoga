@@ -14,26 +14,31 @@
  * limitations under the License.
  */
 
-import 'package:flutter/services.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:yoga_engine/yoga_engine.dart';
+import 'dart:ffi';
 
-void main() {
-  const MethodChannel channel = MethodChannel('yoga_engine');
+import 'dart:io';
 
-  TestWidgetsFlutterBinding.ensureInitialized();
+import 'package:yoga_engine/ffi/types.dart';
+import 'package:yoga_engine/yoga_initializer.dart';
 
-  setUp(() {
-    channel.setMockMethodCallHandler((MethodCall methodCall) async {
-      return '42';
-    });
-  });
+import 'mapper.dart';
 
-  tearDown(() {
-    channel.setMockMethodCallHandler(null);
-  });
+DynamicLibrary loadYoga() {
+  if (Platform.environment.containsKey('FLUTTER_TEST')) {
+    return DynamicLibrary.open('test/libyogacore.dylib');
+  }
+  return Platform.isAndroid
+      ? DynamicLibrary.open("libyogacore.so")
+      : DynamicLibrary.process();
+}
 
-  test('getPlatformVersion', () async {
-    expect(await YogaEngine.platformVersion, '42');
-  });
+YGSize measureFunc(
+  Pointer<YGNode> node,
+  double width,
+  int widthMode,
+  double height,
+  int heightMode,
+) {
+  final mapper = serviceLocator.get<Mapper>();
+  return mapper.yGCreateSize(50, 50);
 }

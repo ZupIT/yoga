@@ -14,38 +14,22 @@
  * limitations under the License.
  */
 
-import 'package:flutter/material.dart';
+import 'dart:ffi';
 
-void main() {
-  runApp(MyApp());
-}
+import 'package:yoga_engine/ffi/mapper.dart';
+import 'package:yoga_engine/ffi/types.dart';
+import 'package:yoga_engine/yoga_initializer.dart';
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
+class YogaNode {
+  final _mapper = serviceLocator.get<Mapper>();
 
-class _MyAppState extends State<MyApp> {
-  @override
-  void initState() {
-    super.initState();
+  final _node = serviceLocator.get<Mapper>().yGNodeNew();
+
+  void insertChildAt(Pointer<YGNode> child, int index) {
+    _mapper.yGNodeInsertChild(_node, child, index);
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Plugin example app'),
-        ),
-        body: Center(
-          child: Column(
-            children: [
-              Text('Running on: '),
-            ],
-          ),
-        ),
-      ),
-    );
+  Pointer<YGNode> getChildAt(int index) {
+    return _mapper.yGNodeGetChild(_node, index);
   }
 }
