@@ -18,6 +18,7 @@ import 'dart:ffi';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:yoga_engine/ffi/mapper.dart';
+import 'package:yoga_engine/ffi/types.dart';
 import 'package:yoga_engine/ffi/utils.dart';
 import 'package:yoga_engine/layout/yoga_node.dart';
 import 'package:yoga_engine/yoga_initializer.dart';
@@ -30,6 +31,37 @@ void main() {
   final yogaNode = YogaNode();
 
   group('Given a YogaNode', () {
+
+    group('When createSize is called', () {
+      test('Then should create a YogaSize with the given parameters', () {
+        // Given
+        final width = 100.0;
+        final height = 200.0;
+
+        // When
+        final result = yogaNode.createSize(width, height);
+
+        // Then
+        expect(result.width, width);
+        expect(result.height, height);
+      });
+    });
+
+    group('When reset is called', () {
+      test('Then should reset all attributes from node', () {
+        // Given
+        yogaNode.setFlex(2);
+        yogaNode.setFlexDirection(YGFlexDirection.YGFlexDirectionColumnReverse);
+
+        // When
+        yogaNode.reset();
+
+        // Then
+        expect(yogaNode.getFlex().isNaN, true);
+        expect(yogaNode.getFlexDirection(), YGFlexDirection.YGFlexDirectionColumn);
+      });
+    });
+
     group('When insertChildAt is called', () {
       test('Then should insert the given child at the index', () {
         // Given
@@ -43,5 +75,7 @@ void main() {
         expect(yogaNode.getChildAt(index), child);
       });
     });
+
+    // TODO cover with tests the other methods
   });
 }

@@ -360,11 +360,11 @@ class Mapper {
 
   void yGNodePrint(
     Pointer<YGNode> node,
-    int options,
+    YGPrintOptions options,
   ) {
     return _yGNodePrint(
       node,
-      options,
+      options.index,
     );
   }
 
@@ -376,10 +376,7 @@ class Mapper {
   bool yGFloatIsUndefined(
     double value,
   ) {
-    return _yGFloatIsUndefined(
-          value,
-        ) !=
-        0;
+    return _yGFloatIsUndefined(value) != 0;
   }
 
   late final _yGFloatIsUndefinedPtr =
@@ -489,10 +486,7 @@ class Mapper {
   bool yGNodeHasMeasureFunc(
     Pointer<YGNode> node,
   ) {
-    return _yGNodeHasMeasureFunc(
-          node,
-        ) !=
-        0;
+    return _yGNodeHasMeasureFunc(node) != 0;
   }
 
   late final _yGNodeHasMeasureFuncPtr =
@@ -518,10 +512,7 @@ class Mapper {
   bool yGNodeHasBaselineFunc(
     Pointer<YGNode> node,
   ) {
-    return _yGNodeHasBaselineFunc(
-          node,
-        ) !=
-        0;
+    return _yGNodeHasBaselineFunc(node) != 0;
   }
 
   late final _yGNodeHasBaselineFuncPtr =
@@ -590,10 +581,7 @@ class Mapper {
   bool yGNodeGetHasNewLayout(
     Pointer<YGNode> node,
   ) {
-    return _yGNodeGetHasNewLayout(
-          node,
-        ) !=
-        0;
+    return _yGNodeGetHasNewLayout(node) != 0;
   }
 
   late final _yGNodeGetHasNewLayoutPtr =
@@ -647,10 +635,7 @@ class Mapper {
   bool yGNodeIsDirty(
     Pointer<YGNode> node,
   ) {
-    return _yGNodeIsDirty(
-          node,
-        ) !=
-        0;
+    return _yGNodeIsDirty(node) != 0;
   }
 
   late final _yGNodeIsDirtyPtr =
@@ -661,10 +646,7 @@ class Mapper {
   bool yGNodeLayoutGetDidUseLegacyFlag(
     Pointer<YGNode> node,
   ) {
-    return _yGNodeLayoutGetDidUseLegacyFlag(
-          node,
-        ) !=
-        0;
+    return _yGNodeLayoutGetDidUseLegacyFlag(node) != 0;
   }
 
   late final _yGNodeLayoutGetDidUseLegacyFlagPtr =
@@ -693,9 +675,7 @@ class Mapper {
   YGDirection yGNodeStyleGetDirection(
     Pointer<YGNode> node,
   ) {
-    return YGDirection.values[_yGNodeStyleGetDirection(
-      node,
-    )];
+    return YGDirection.values[_yGNodeStyleGetDirection(node)];
   }
 
   late final _yGNodeStyleGetDirectionPtr =
@@ -998,9 +978,7 @@ class Mapper {
   double yGNodeStyleGetFlex(
     Pointer<YGNode> node,
   ) {
-    return _yGNodeStyleGetFlex(
-      node,
-    );
+    return _yGNodeStyleGetFlex(node);
   }
 
   late final _yGNodeStyleGetFlexPtr =
@@ -1764,12 +1742,10 @@ class Mapper {
   late final DartYgNodeLayoutGetHeight _yGNodeLayoutGetHeight =
       _yGNodeLayoutGetHeightPtr.asFunction<DartYgNodeLayoutGetHeight>();
 
-  int yGNodeLayoutGetDirection(
+  YGDirection yGNodeLayoutGetDirection(
     Pointer<YGNode> node,
   ) {
-    return _yGNodeLayoutGetDirection(
-      node,
-    );
+    return YGDirection.values[_yGNodeLayoutGetDirection(node)];
   }
 
   late final _yGNodeLayoutGetDirectionPtr =
@@ -1781,10 +1757,7 @@ class Mapper {
   bool yGNodeLayoutGetHadOverflow(
     Pointer<YGNode> node,
   ) {
-    return _yGNodeLayoutGetHadOverflow(
-          node,
-        ) !=
-        0;
+    return _yGNodeLayoutGetHadOverflow(node) != 0;
   }
 
   late final _yGNodeLayoutGetHadOverflowPtr =
@@ -1797,10 +1770,7 @@ class Mapper {
   bool yGNodeLayoutGetDidLegacyStretchFlagAffectLayout(
     Pointer<YGNode> node,
   ) {
-    return _yGNodeLayoutGetDidLegacyStretchFlagAffectLayout(
-          node,
-        ) !=
-        0;
+    return _yGNodeLayoutGetDidLegacyStretchFlagAffectLayout(node) != 0;
   }
 
   late final _yGNodeLayoutGetDidLegacyStretchFlagAffectLayoutPtr =
@@ -2134,9 +2104,7 @@ class Mapper {
   Pointer<Void> yGConfigGetContext(
     Pointer<YGConfig> config,
   ) {
-    return _yGConfigGetContext(
-      config,
-    );
+    return _yGConfigGetContext(config);
   }
 
   late final _yGConfigGetContextPtr =
