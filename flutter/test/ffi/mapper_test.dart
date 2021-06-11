@@ -17,10 +17,10 @@
 import 'dart:ffi';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:yoga_engine/ffi/mapper.dart';
-import 'package:yoga_engine/ffi/types.dart';
-import 'package:yoga_engine/ffi/utils.dart';
-import 'package:yoga_engine/yoga_initializer.dart';
+import 'package:yoga_engine/src/ffi/mapper.dart';
+import 'package:yoga_engine/src/ffi/types.dart';
+import 'package:yoga_engine/src/utils/methods.dart';
+import 'package:yoga_engine/src/yoga_initializer.dart';
 
 void main() {
   serviceLocator.registerSingleton<DynamicLibrary>(loadYoga());

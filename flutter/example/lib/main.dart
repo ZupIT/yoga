@@ -15,8 +15,10 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:yoga_engine/yoga_engine.dart';
 
 void main() {
+  Yoga.init();
   runApp(MyApp());
 }
 
@@ -33,15 +35,50 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    YogaNode child1 = YogaNode();
+    child1.setWidth(40);
+    child1.setHeight(40);
+
+    YogaNode child2 = YogaNode();
+    child2.setFlexDirection(YGFlexDirection.YGFlexDirectionRow);
+
+    YogaNode child3 = YogaNode();
+
+    YogaNode root = YogaNode();
+    root.setWidth(300);
+    root.setHeight(300);
+    root.setFlexDirection(YGFlexDirection.YGFlexDirectionRow);
+    // root.setAlignItems(YGAlign.YGAlignCenter);
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
-        body: Center(
-          child: Column(
+        body: ColoredBox(
+          color: Colors.orange,
+          child: YogaTree(
+            yogaNode: root,
             children: [
-              Text('Running on: '),
+              YogaLeaf(
+                yogaNode: child1,
+                child: ColoredBox(
+                  color: Colors.yellow,
+                  child: Text('Child 1'),
+                ),
+              ),
+              YogaTree(
+                yogaNode: child2,
+                children: [
+                  YogaLeaf(
+                    yogaNode: child3,
+                    child: ColoredBox(
+                      color: Colors.cyan,
+                      child: Text('Child 2'),
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ),

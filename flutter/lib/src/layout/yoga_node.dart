@@ -16,15 +16,19 @@
 
 import 'dart:ffi';
 
-import 'package:yoga_engine/ffi/mapper.dart';
-import 'package:yoga_engine/ffi/types.dart';
-import 'package:yoga_engine/ffi/utils.dart';
-import 'package:yoga_engine/yoga_initializer.dart';
+import 'package:yoga_engine/src/ffi/mapper.dart';
+import 'package:yoga_engine/src/ffi/types.dart';
+import 'package:yoga_engine/src/utils/methods.dart';
+import 'package:yoga_engine/src/yoga_initializer.dart';
 
 class YogaNode {
   final _mapper = serviceLocator.get<Mapper>();
 
   final _node = serviceLocator.get<Mapper>().yGNodeNew();
+
+  Pointer<YGNode> get node => _node;
+
+  bool isCalculated = false;
 
   YGSize createSize(
     double width,
@@ -37,8 +41,8 @@ class YogaNode {
     _mapper.yGNodeReset(_node);
   }
 
-  void insertChildAt(Pointer<YGNode> child, int index) {
-    _mapper.yGNodeInsertChild(_node, child, index);
+  void insertChildAt(YogaNode child, int index) {
+    _mapper.yGNodeInsertChild(_node, child.node, index);
   }
 
   Pointer<YGNode> getChildAt(int index) {

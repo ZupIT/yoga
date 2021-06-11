@@ -17,11 +17,11 @@
 import 'dart:ffi';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:yoga_engine/ffi/mapper.dart';
-import 'package:yoga_engine/ffi/types.dart';
-import 'package:yoga_engine/ffi/utils.dart';
-import 'package:yoga_engine/layout/yoga_node.dart';
-import 'package:yoga_engine/yoga_initializer.dart';
+import 'package:yoga_engine/src/ffi/mapper.dart';
+import 'package:yoga_engine/src/ffi/types.dart';
+import 'package:yoga_engine/src/utils/methods.dart';
+import 'package:yoga_engine/src/layout/yoga_node.dart';
+import 'package:yoga_engine/src/yoga_initializer.dart';
 
 void main() {
   serviceLocator.registerSingleton<DynamicLibrary>(loadYoga());
@@ -65,14 +65,14 @@ void main() {
     group('When insertChildAt is called', () {
       test('Then should insert the given child at the index', () {
         // Given
-        final child = mapper.yGNodeNew();
+        final child = YogaNode();
         final index = 0;
 
         // When
         yogaNode.insertChildAt(child, index);
 
         // Then
-        expect(yogaNode.getChildAt(index), child);
+        expect(yogaNode.getChildAt(index), child.node);
       });
     });
 
