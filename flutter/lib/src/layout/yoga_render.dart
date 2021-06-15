@@ -33,6 +33,11 @@ class YogaParentData extends ContainerBoxParentData<RenderBox> {
   String toString() => '${super.toString()}; node=$yogaNode; isLeaf=$isLeaf';
 }
 
+/// Class responsible to measure any flutter widget by the YogaNode properties.
+/// This can only be placed inside a YogaTree widget and cannot have another
+/// YogaLeaf as a direct child.
+/// Pass false to isLeaf property when this class is not placed at the end of
+/// the widget tree.
 class YogaLeaf extends ParentDataWidget<YogaParentData> {
   const YogaLeaf({
     Key? key,
@@ -216,6 +221,9 @@ class RenderYoga extends RenderBox
   }
 }
 
+/// Class responsible to measure each YogaLeaf by the YogaNode properties.
+/// Only YogaLeaf widgets are enabled to be children.
+/// This widget has no restriction to be positioned.
 class YogaTree extends MultiChildRenderObjectWidget {
   YogaTree({
     Key? key,

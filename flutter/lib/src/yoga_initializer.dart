@@ -22,6 +22,8 @@ import 'package:yoga_engine/src/utils/methods.dart';
 
 import 'ffi/mapper.dart';
 
+/// Class responsible to initialize all dependencies of yoga_engine.
+/// Call the init method only once before start the application.
 class Yoga {
   static void init() {
     _setupServiceLocator();

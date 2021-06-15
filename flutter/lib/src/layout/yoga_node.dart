@@ -21,6 +21,8 @@ import 'package:yoga_engine/src/ffi/types.dart';
 import 'package:yoga_engine/src/utils/methods.dart';
 import 'package:yoga_engine/src/yoga_initializer.dart';
 
+/// Class responsible to holder the pointer to YGNode used in yoga core.
+/// This also expose all methods needed to configure the yoga params.
 class YogaNode {
   final _mapper = serviceLocator.get<Mapper>();
 
