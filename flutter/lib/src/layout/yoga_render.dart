@@ -118,7 +118,7 @@ class RenderYoga extends RenderBox
 
   @override
   void performLayout() {
-    if (!yogaNode.isCalculated) {
+    if (!yogaNode.isCalculated()) {
       _attachNodesFromWidgetsHierarchy(this);
       yogaNode.calculateLayout(YGUndefined, YGUndefined);
     }
@@ -137,7 +137,6 @@ class RenderYoga extends RenderBox
       if (child is RenderYoga) {
         renderYoga.yogaNode.insertChildAt(child.yogaNode, i);
         _attachNodesFromWidgetsHierarchy(child);
-        child.yogaNode.isCalculated = true;
       } else {
         assert(() {
           if (child.parentData is YogaParentData) {
@@ -147,17 +146,29 @@ class RenderYoga extends RenderBox
               'you must declare every child inside a YogaLeaf component');
         }());
         final yogaParentData = child.parentData as YogaParentData;
-        final yogaNode = _getYogaNode(yogaParentData);
+        final yogaNodeLeaf = _getYogaNode(yogaParentData);
+        renderYoga.yogaNode.insertChildAt(yogaNodeLeaf, i);
         if (_isLeaf(yogaParentData)) {
-          _helper.setRenderBoxToNode(child, yogaNode.node);
-          yogaNode.setMeasureFunc();
+          _helper.setRenderBoxToNode(child, yogaNodeLeaf.node);
+          yogaNodeLeaf.setMeasureFunc();
         } else {
-          // TODO leaf with nested child
+          _iterateOverYogaLeaves(child, yogaNodeLeaf);
         }
-        renderYoga.yogaNode.insertChildAt(yogaNode, i);
-        renderYoga.yogaNode.isCalculated = true;
       }
     }
+  }
+
+  _iterateOverYogaLeaves(RenderBox child, YogaNode yogaNodeLeaf) {
+    int index = 0;
+    child.visitChildren((innerChild) {
+      if (innerChild is RenderYoga) {
+        yogaNodeLeaf.insertChildAt(innerChild.yogaNode, index);
+        _attachNodesFromWidgetsHierarchy(innerChild);
+      } else {
+        _iterateOverYogaLeaves(innerChild as RenderBox, yogaNodeLeaf);
+      }
+      index++;
+    });
   }
 
   void _applyLayoutToWidgetsHierarchy(List<RenderBox> children) {
@@ -174,15 +185,23 @@ class RenderYoga extends RenderBox
         _helper.getLeft(node),
         _helper.getTop(node),
       );
-      child.layout(
-        BoxConstraints.tight(
+      late BoxConstraints childConstraints;
+      if (yogaParentData.isLeaf!) {
+        childConstraints = BoxConstraints.tight(
           Size(
             _helper.getLayoutWidth(node),
             _helper.getLayoutHeight(node),
           ),
-        ),
-        parentUsesSize: true,
-      );
+        );
+      } else {
+        childConstraints = BoxConstraints.loose(
+          Size(
+            _helper.getLayoutWidth(node),
+            _helper.getLayoutHeight(node),
+          ),
+        );
+      }
+      child.layout(childConstraints, parentUsesSize: true);
     }
   }
 

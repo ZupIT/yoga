@@ -36,19 +36,23 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     YogaNode child1 = YogaNode();
-    child1.setWidth(40);
-    child1.setHeight(40);
+    child1.setWidth(50);
+    child1.setHeight(50);
 
     YogaNode child2 = YogaNode();
-    child2.setFlexDirection(YGFlexDirection.YGFlexDirectionRow);
 
     YogaNode child3 = YogaNode();
+    child3.setFlexDirection(YGFlexDirection.YGFlexDirectionRow);
+    child3.setHeight(100);
+
+    YogaNode child4 = YogaNode();
+    child4.setHeight(50);
 
     YogaNode root = YogaNode();
     root.setWidth(300);
     root.setHeight(300);
     root.setFlexDirection(YGFlexDirection.YGFlexDirectionRow);
-    // root.setAlignItems(YGAlign.YGAlignCenter);
+    root.setAlignItems(YGAlign.YGAlignCenter);
 
     return MaterialApp(
       home: Scaffold(
@@ -67,17 +71,24 @@ class _MyAppState extends State<MyApp> {
                   child: Text('Child 1'),
                 ),
               ),
-              YogaTree(
+              YogaLeaf(
+                isLeaf: false,
                 yogaNode: child2,
-                children: [
-                  YogaLeaf(
+                child: ColoredBox(
+                  color: Colors.pink,
+                  child: YogaTree(
                     yogaNode: child3,
-                    child: ColoredBox(
-                      color: Colors.cyan,
-                      child: Text('Child 2'),
-                    ),
+                    children: [
+                      YogaLeaf(
+                        yogaNode: child4,
+                        child: ColoredBox(
+                          color: Colors.cyan,
+                          child: Text('Child 2'),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
             ],
           ),

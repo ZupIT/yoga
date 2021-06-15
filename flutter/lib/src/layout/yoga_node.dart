@@ -28,8 +28,6 @@ class YogaNode {
 
   Pointer<YGNode> get node => _node;
 
-  bool isCalculated = false;
-
   YGSize createSize(
     double width,
     double height,
@@ -367,5 +365,10 @@ class YogaNode {
 
   double getLayoutPadding(YGEdge edge) {
     return _mapper.yGNodeLayoutGetPadding(_node, edge);
+  }
+
+  bool isCalculated() {
+    return !_mapper.yGNodeLayoutGetWidth(_node).isNaN &&
+    !_mapper.yGNodeLayoutGetHeight(_node).isNaN;
   }
 }

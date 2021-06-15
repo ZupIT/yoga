@@ -18,7 +18,6 @@ import 'dart:ffi';
 import 'dart:io';
 import 'dart:math';
 
-import 'package:flutter/widgets.dart';
 import 'package:yoga_engine/src/ffi/mapper.dart';
 
 import '../../yoga_engine.dart';
