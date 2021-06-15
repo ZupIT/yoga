@@ -14,25 +14,3 @@
  * limitations under the License.
  */
 
-import 'dart:ffi';
-
-import 'package:get_it/get_it.dart';
-import 'package:yoga_engine/src/utils/node_helper.dart';
-import 'package:yoga_engine/src/utils/methods.dart';
-
-import 'ffi/mapper.dart';
-
-class Yoga {
-  static void init() {
-    _setupServiceLocator();
-  }
-}
-
-final serviceLocator = GetIt.instance;
-
-void _setupServiceLocator() {
-  serviceLocator.registerSingleton<DynamicLibrary>(loadYoga());
-  serviceLocator.registerSingleton<Mapper>(Mapper(serviceLocator.get()));
-  serviceLocator
-      .registerSingleton<NodeHelper>(NodeHelper(serviceLocator.get()));
-}

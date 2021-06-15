@@ -22,7 +22,7 @@ import 'package:yoga_engine/src/ffi/mapper.dart';
 
 import '../../yoga_engine.dart';
 import '../yoga_initializer.dart';
-import 'helpers.dart';
+import 'node_helper.dart';
 
 DynamicLibrary loadYoga() {
   if (Platform.environment.containsKey('FLUTTER_TEST')) {

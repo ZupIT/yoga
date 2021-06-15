@@ -20,7 +20,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:yoga_engine/src/ffi/types.dart';
-import 'package:yoga_engine/src/utils/helpers.dart';
+import 'package:yoga_engine/src/utils/node_helper.dart';
 
 import '../yoga_initializer.dart';
 import 'yoga_node.dart';
