@@ -61,5 +61,65 @@ void main() {
         expect(_nodeHelper.getRenderBoxFromNode(node), null);
       });
     });
+
+    group('When getLeft is called', () {
+      test('Then should return the calculated x', () {
+        // Given
+        final node = YogaNode();
+        node.setMargin(YGEdge.YGEdgeLeft, 20);
+        node.calculateLayout(YGUndefined, YGUndefined);
+
+        // When
+        final result = _nodeHelper.getLeft(node.node);
+
+        // Then
+        expect(node.getMargin(YGEdge.YGEdgeLeft).value, result);
+      });
+    });
+
+    group('When getTop is called', () {
+      test('Then should return the calculated y', () {
+        // Given
+        final node = YogaNode();
+        node.setMargin(YGEdge.YGEdgeTop, 20);
+        node.calculateLayout(YGUndefined, YGUndefined);
+
+        // When
+        final result = _nodeHelper.getTop(node.node);
+
+        // Then
+        expect(node.getMargin(YGEdge.YGEdgeTop).value, result);
+      });
+    });
+
+    group('When getLayoutWidth is called', () {
+      test('Then should return the calculated width', () {
+        // Given
+        final node = YogaNode();
+        node.setWidth(100);
+        node.calculateLayout(YGUndefined, YGUndefined);
+
+        // When
+        final result = _nodeHelper.getLayoutWidth(node.node);
+
+        // Then
+        expect(node.getWidth().value, result);
+      });
+    });
+
+    group('When getLayoutHeight is called', () {
+      test('Then should return the calculated height', () {
+        // Given
+        final node = YogaNode();
+        node.setHeight(100);
+        node.calculateLayout(YGUndefined, YGUndefined);
+
+        // When
+        final result = _nodeHelper.getLayoutHeight(node.node);
+
+        // Then
+        expect(node.getHeight().value, result);
+      });
+    });
   });
 }

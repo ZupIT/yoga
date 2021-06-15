@@ -14,3 +14,46 @@
  * limitations under the License.
  */
 
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:yoga_engine/src/layout/yoga_node.dart';
+import 'package:yoga_engine/src/layout/yoga_render.dart';
+import 'package:yoga_engine/src/yoga_initializer.dart';
+
+void main() {
+  group('Given', () {
+    group('When', () {
+      testWidgets('Then', (WidgetTester tester) async {
+        // Given
+        Yoga.init();
+        final child = YogaNode();
+
+        final rootNode = YogaNode();
+        rootNode.setWidth(100);
+        rootNode.setHeight(100);
+
+        final layout = MaterialApp(
+          home: Scaffold(
+            body: YogaTree(
+              yogaNode: rootNode,
+              children: [
+                YogaLeaf(
+                  yogaNode: child,
+                  child: Text('test'),
+                )
+              ],
+            ),
+          ),
+        );
+
+        // When
+        await tester.pumpWidget(layout);
+        final textFinder = find.text('test');
+
+        // Then
+        expect(textFinder, findsOneWidget);
+      });
+    });
+  });
+}
