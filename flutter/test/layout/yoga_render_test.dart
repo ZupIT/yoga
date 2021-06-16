@@ -22,9 +22,10 @@ import 'package:yoga_engine/src/layout/yoga_render.dart';
 import 'package:yoga_engine/src/yoga_initializer.dart';
 
 void main() {
-  group('Given', () {
-    group('When', () {
-      testWidgets('Then', (WidgetTester tester) async {
+  group('Given a YogaTree and YogaLeaf', () {
+    group('When a layout is built', () {
+      testWidgets('Then the layout should be rendered',
+          (WidgetTester tester) async {
         // Given
         Yoga.init();
         final child = YogaNode();
@@ -41,7 +42,7 @@ void main() {
                 YogaLeaf(
                   yogaNode: child,
                   child: Text('test'),
-                )
+                ),
               ],
             ),
           ),
