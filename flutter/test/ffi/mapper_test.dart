@@ -270,10 +270,10 @@ void main() {
     group('When yGNodeSetChildren is called', () {
       test('Then should set the given children', () {
         // Given
-        final ygNode = mapper.yGNodeNew();
-        final ygChild1 = mapper.yGNodeNew();
-        final ygChild2 = mapper.yGNodeNew();
-        final ygChildren = [ygChild1, ygChild2];
+        // final ygNode = mapper.yGNodeNew();
+        // final ygChild1 = mapper.yGNodeNew();
+        // final ygChild2 = mapper.yGNodeNew();
+        // final ygChildren = [ygChild1, ygChild2];
 
         // When
         // final result = mapper.yGNodeSetChildren(ygNode, ygChildren, 2);
