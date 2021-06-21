@@ -125,7 +125,10 @@ class RenderYoga extends RenderBox
   void performLayout() {
     if (!yogaNode.isCalculated()) {
       _attachNodesFromWidgetsHierarchy(this);
-      yogaNode.calculateLayout(YGUndefined, YGUndefined);
+      yogaNode.calculateLayout(
+        constraints.maxWidth.floorToDouble(),
+        constraints.maxHeight.floorToDouble(),
+      );
     }
     _applyLayoutToWidgetsHierarchy(getChildrenAsList());
 
@@ -143,14 +146,14 @@ class RenderYoga extends RenderBox
         renderYoga.yogaNode.insertChildAt(child.yogaNode, i);
         _attachNodesFromWidgetsHierarchy(child);
       } else {
+        final yogaParentData = child.parentData as YogaParentData;
         assert(() {
-          if (child.parentData is YogaParentData) {
+          if (yogaParentData.yogaNode != null) {
             return true;
           }
           throw FlutterError('To use YogaTree, '
               'you must declare every child inside a YogaLeaf component');
         }());
-        final yogaParentData = child.parentData as YogaParentData;
         final yogaNodeLeaf = _getYogaNode(yogaParentData);
         renderYoga.yogaNode.insertChildAt(yogaNodeLeaf, i);
         if (_isLeaf(yogaParentData)) {
@@ -239,10 +242,8 @@ class YogaTree extends MultiChildRenderObjectWidget {
   }
 
   @override
-  void updateRenderObject(
-    BuildContext context,
-    covariant RenderYoga renderObject,
-  ) {
+  void updateRenderObject(BuildContext context,
+      covariant RenderYoga renderObject,) {
     renderObject.yogaNode = yogaNode;
   }
 
