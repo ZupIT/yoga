@@ -26,11 +26,12 @@ import '../yoga_initializer.dart';
 import 'yoga_node.dart';
 
 class YogaParentData extends ContainerBoxParentData<RenderBox> {
-  bool? isLeaf;
+  bool? isLastLeaf;
   YogaNode? yogaNode;
 
   @override
-  String toString() => '${super.toString()}; node=$yogaNode; isLeaf=$isLeaf';
+  String toString() =>
+      '${super.toString()}; node=$yogaNode; isLastLeaf=$isLastLeaf';
 }
 
 /// Class responsible to measure any flutter widget by the YogaNode properties.
@@ -41,12 +42,12 @@ class YogaParentData extends ContainerBoxParentData<RenderBox> {
 class YogaLeaf extends ParentDataWidget<YogaParentData> {
   const YogaLeaf({
     Key? key,
-    this.isLeaf = true,
+    this.isLastLeaf = true,
     required this.yogaNode,
     required Widget child,
   }) : super(key: key, child: child);
 
-  final bool isLeaf;
+  final bool isLastLeaf;
   final YogaNode yogaNode;
 
   @override
@@ -55,8 +56,8 @@ class YogaLeaf extends ParentDataWidget<YogaParentData> {
     final parentData = renderObject.parentData! as YogaParentData;
     bool needsLayout = false;
 
-    if (parentData.isLeaf != isLeaf) {
-      parentData.isLeaf = isLeaf;
+    if (parentData.isLastLeaf != isLastLeaf) {
+      parentData.isLastLeaf = isLastLeaf;
       needsLayout = true;
     }
 
@@ -77,7 +78,7 @@ class YogaLeaf extends ParentDataWidget<YogaParentData> {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(StringProperty('isLeaf', isLeaf.toString()));
+    properties.add(StringProperty('isLastLeaf', isLastLeaf.toString()));
     properties.add(StringProperty('yogaNode', yogaNode.toString()));
   }
 }
@@ -114,7 +115,7 @@ class RenderYoga extends RenderBox
   }
 
   bool _isLeaf(YogaParentData yogaParentData) {
-    return yogaParentData.isLeaf ?? false;
+    return yogaParentData.isLastLeaf ?? false;
   }
 
   YogaNode _getYogaNode(YogaParentData yogaParentData) {
@@ -194,7 +195,7 @@ class RenderYoga extends RenderBox
         _helper.getTop(node),
       );
       late BoxConstraints childConstraints;
-      if (yogaParentData.isLeaf!) {
+      if (yogaParentData.isLastLeaf!) {
         childConstraints = BoxConstraints.tight(
           Size(
             _helper.getLayoutWidth(node),
@@ -242,8 +243,10 @@ class YogaTree extends MultiChildRenderObjectWidget {
   }
 
   @override
-  void updateRenderObject(BuildContext context,
-      covariant RenderYoga renderObject,) {
+  void updateRenderObject(
+    BuildContext context,
+    covariant RenderYoga renderObject,
+  ) {
     renderObject.yogaNode = yogaNode;
   }
 

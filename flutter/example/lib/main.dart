@@ -72,7 +72,7 @@ class _MyAppState extends State<MyApp> {
                 ),
               ),
               YogaLeaf(
-                isLeaf: false,
+                isLastLeaf: false,
                 yogaNode: child2,
                 child: ColoredBox(
                   color: Colors.pink,
