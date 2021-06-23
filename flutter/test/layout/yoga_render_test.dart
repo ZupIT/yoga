@@ -22,7 +22,7 @@ import 'package:yoga_engine/src/layout/yoga_render.dart';
 import 'package:yoga_engine/src/yoga_initializer.dart';
 
 void main() {
-  group('Given a YogaTree and YogaLeaf', () {
+  group('Given a YogaLayout and YogaNode', () {
     group('When a layout is built', () {
       testWidgets('Then the layout should be rendered',
           (WidgetTester tester) async {

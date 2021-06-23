@@ -12,7 +12,7 @@ First, import the dependency `package:yoga_engine/yoga_engine.dart` to your dart
 to use all the widgets and helpers provided by the Yoga Engine. Then, before `runApp` 
 method, call `Yoga.init()` to initialize all Yoga Engine dependencies.
 
-All that done, just configure each `YogaProperties` instance to all `YogaLayout` and `YogaNode` 
+All that done, just configure each `NodeProperties` instance to all `YogaLayout` and `YogaNode` 
 widgets in your layout, to yoga calculate each widget size and position them.
 
 ## Flutter layout comparison
@@ -39,13 +39,13 @@ void main() {
 
 ### Configuration
 ```dart
-YogaNode root = NodeProperties();
+NodeProperties root = NodeProperties();
 root.setWidth(300);
 root.setHeight(300);
 root.setFlexDirection(YGFlexDirection.YGFlexDirectionRow);
 root.setAlignItems(YGAlign.YGAlignCenter);
 
-YogaNode child = NodeProperties();
+NodeProperties child = NodeProperties();
 ```
 
 ### Placement
