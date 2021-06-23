@@ -195,7 +195,7 @@ class RenderYoga extends RenderBox
         _helper.getTop(node),
       );
       late BoxConstraints childConstraints;
-      if (yogaParentData.isLastLeaf!) {
+      if (yogaParentData.isLastLeaf != null && yogaParentData.isLastLeaf!) {
         childConstraints = BoxConstraints.tight(
           Size(
             _helper.getLayoutWidth(node),
