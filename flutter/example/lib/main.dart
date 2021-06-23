@@ -35,20 +35,20 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    YogaNode child1 = YogaNode();
+    NodeProperties child1 = NodeProperties();
     child1.setWidth(50);
     child1.setHeight(50);
 
-    YogaNode child2 = YogaNode();
+    NodeProperties child2 = NodeProperties();
 
-    YogaNode child3 = YogaNode();
+    NodeProperties child3 = NodeProperties();
     child3.setFlexDirection(YGFlexDirection.YGFlexDirectionRow);
     child3.setHeight(100);
 
-    YogaNode child4 = YogaNode();
+    NodeProperties child4 = NodeProperties();
     child4.setHeight(50);
 
-    YogaNode root = YogaNode();
+    NodeProperties root = NodeProperties();
     root.setWidth(300);
     root.setHeight(300);
     root.setFlexDirection(YGFlexDirection.YGFlexDirectionRow);
@@ -59,28 +59,38 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
+        // body: Expanded(
+        //   child: Text('test'),
+        // ),
+        // body: Row(
+        //   children: [
+        //     Flexible(
+        //       child: Text('test'),
+        //     )
+        //   ],
+        // ),
         body: ColoredBox(
           color: Colors.orange,
-          child: YogaTree(
-            yogaNode: root,
+          child: YogaLayout(
+            nodeProperties: root,
             children: [
-              YogaLeaf(
-                yogaNode: child1,
+              YogaNode(
+                nodeProperties: child1,
                 child: ColoredBox(
                   color: Colors.yellow,
                   child: Text('Child 1'),
                 ),
               ),
-              YogaLeaf(
-                isLastLeaf: false,
-                yogaNode: child2,
+              YogaNode(
+                isLeaf: false,
+                nodeProperties: child2,
                 child: ColoredBox(
                   color: Colors.pink,
-                  child: YogaTree(
-                    yogaNode: child3,
+                  child: YogaLayout(
+                    nodeProperties: child3,
                     children: [
-                      YogaLeaf(
-                        yogaNode: child4,
+                      YogaNode(
+                        nodeProperties: child4,
                         child: ColoredBox(
                           color: Colors.cyan,
                           child: Text('Child 2'),

@@ -23,7 +23,7 @@ import 'package:yoga_engine/src/yoga_initializer.dart';
 
 /// Class responsible to holder the pointer to YGNode used in yoga core.
 /// This also expose all methods needed to configure the yoga params.
-class YogaNode {
+class NodeProperties {
   final _mapper = serviceLocator.get<Mapper>();
 
   final _node = serviceLocator.get<Mapper>().yGNodeNew();
@@ -41,7 +41,7 @@ class YogaNode {
     _mapper.yGNodeReset(_node);
   }
 
-  void insertChildAt(YogaNode child, int index) {
+  void insertChildAt(NodeProperties child, int index) {
     _mapper.yGNodeInsertChild(_node, child.node, index);
   }
 

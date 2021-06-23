@@ -19,7 +19,7 @@ import 'dart:ffi';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:yoga_engine/src/ffi/mapper.dart';
 import 'package:yoga_engine/src/ffi/types.dart';
-import 'package:yoga_engine/src/layout/yoga_node.dart';
+import 'package:yoga_engine/src/layout/node_properties.dart';
 import 'package:yoga_engine/src/layout/yoga_render.dart';
 import 'package:yoga_engine/src/utils/methods.dart';
 import 'package:yoga_engine/src/utils/node_helper.dart';
@@ -56,7 +56,7 @@ void main() {
     final _nodeHelper = NodeHelper(serviceLocator.get());
     serviceLocator.registerSingleton<NodeHelper>(_nodeHelper);
     final node = _mapper.yGNodeNew();
-    final renderYoga = RenderYoga(yogaNode: YogaNode());
+    final renderYoga = RenderYoga(nodeProperties: NodeProperties());
     _nodeHelper.setRenderBoxToNode(renderYoga, node);
 
     group('When measureFunc is called', () {

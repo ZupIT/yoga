@@ -19,8 +19,8 @@ import 'dart:ffi';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:yoga_engine/src/ffi/mapper.dart';
 import 'package:yoga_engine/src/ffi/types.dart';
+import 'package:yoga_engine/src/layout/node_properties.dart';
 import 'package:yoga_engine/src/utils/methods.dart';
-import 'package:yoga_engine/src/layout/yoga_node.dart';
 import 'package:yoga_engine/src/yoga_initializer.dart';
 
 void main() {
@@ -28,10 +28,9 @@ void main() {
   final mapper = Mapper(serviceLocator.get());
   serviceLocator.registerSingleton<Mapper>(mapper);
 
-  final yogaNode = YogaNode();
+  final nodeProperties = NodeProperties();
 
-  group('Given a YogaNode', () {
-
+  group('Given a NodeProperties', () {
     group('When createSize is called', () {
       test('Then should create a YogaSize with the given parameters', () {
         // Given
@@ -39,7 +38,7 @@ void main() {
         final height = 200.0;
 
         // When
-        final result = yogaNode.createSize(width, height);
+        final result = nodeProperties.createSize(width, height);
 
         // Then
         expect(result.width, width);
@@ -50,29 +49,31 @@ void main() {
     group('When reset is called', () {
       test('Then should reset all attributes from node', () {
         // Given
-        yogaNode.setFlex(2);
-        yogaNode.setFlexDirection(YGFlexDirection.YGFlexDirectionColumnReverse);
+        nodeProperties.setFlex(2);
+        nodeProperties
+            .setFlexDirection(YGFlexDirection.YGFlexDirectionColumnReverse);
 
         // When
-        yogaNode.reset();
+        nodeProperties.reset();
 
         // Then
-        expect(yogaNode.getFlex().isNaN, true);
-        expect(yogaNode.getFlexDirection(), YGFlexDirection.YGFlexDirectionColumn);
+        expect(nodeProperties.getFlex().isNaN, true);
+        expect(nodeProperties.getFlexDirection(),
+            YGFlexDirection.YGFlexDirectionColumn);
       });
     });
 
     group('When insertChildAt is called', () {
       test('Then should insert the given child at the index', () {
         // Given
-        final child = YogaNode();
+        final child = NodeProperties();
         final index = 0;
 
         // When
-        yogaNode.insertChildAt(child, index);
+        nodeProperties.insertChildAt(child, index);
 
         // Then
-        expect(yogaNode.getChildAt(index), child.node);
+        expect(nodeProperties.getChildAt(index), child.node);
       });
     });
 

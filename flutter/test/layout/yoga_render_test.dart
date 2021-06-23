@@ -17,7 +17,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:yoga_engine/src/layout/yoga_node.dart';
+import 'package:yoga_engine/src/layout/node_properties.dart';
 import 'package:yoga_engine/src/layout/yoga_render.dart';
 import 'package:yoga_engine/src/yoga_initializer.dart';
 
@@ -28,19 +28,19 @@ void main() {
           (WidgetTester tester) async {
         // Given
         Yoga.init();
-        final child = YogaNode();
+        final child = NodeProperties();
 
-        final rootNode = YogaNode();
+        final rootNode = NodeProperties();
         rootNode.setWidth(100);
         rootNode.setHeight(100);
 
         final layout = MaterialApp(
           home: Scaffold(
-            body: YogaTree(
-              yogaNode: rootNode,
+            body: YogaLayout(
+              nodeProperties: rootNode,
               children: [
-                YogaLeaf(
-                  yogaNode: child,
+                YogaNode(
+                  nodeProperties: child,
                   child: Text('test'),
                 ),
               ],

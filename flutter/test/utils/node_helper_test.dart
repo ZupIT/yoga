@@ -37,7 +37,7 @@ void main() {
       test('Then should set the renderBox to the given node', () {
         // Given
         final node = _mapper.yGNodeNew();
-        final renderBox = RenderYoga(yogaNode: YogaNode());
+        final renderBox = RenderYoga(nodeProperties: NodeProperties());
 
         // When
         _nodeHelper.setRenderBoxToNode(renderBox, node);
@@ -51,7 +51,7 @@ void main() {
       test('Then should remove the node index', () {
         // Given
         final node = _mapper.yGNodeNew();
-        final renderBox = RenderYoga(yogaNode: YogaNode());
+        final renderBox = RenderYoga(nodeProperties: NodeProperties());
         _nodeHelper.setRenderBoxToNode(renderBox, node);
 
         // When
@@ -66,7 +66,7 @@ void main() {
       test('Then should return the renderbox', () {
         // Given
         final node = _mapper.yGNodeNew();
-        final renderBox = RenderYoga(yogaNode: YogaNode());
+        final renderBox = RenderYoga(nodeProperties: NodeProperties());
 
         // When
         _nodeHelper.setRenderBoxToNode(renderBox, node);
@@ -79,7 +79,7 @@ void main() {
     group('When getLeft is called', () {
       test('Then should return the calculated x', () {
         // Given
-        final node = YogaNode();
+        final node = NodeProperties();
         node.setMargin(YGEdge.YGEdgeLeft, 20);
         node.calculateLayout(YGUndefined, YGUndefined);
 
@@ -94,7 +94,7 @@ void main() {
     group('When getTop is called', () {
       test('Then should return the calculated y', () {
         // Given
-        final node = YogaNode();
+        final node = NodeProperties();
         node.setMargin(YGEdge.YGEdgeTop, 20);
         node.calculateLayout(YGUndefined, YGUndefined);
 
@@ -109,7 +109,7 @@ void main() {
     group('When getLayoutWidth is called', () {
       test('Then should return the calculated width', () {
         // Given
-        final node = YogaNode();
+        final node = NodeProperties();
         node.setWidth(100);
         node.calculateLayout(YGUndefined, YGUndefined);
 
@@ -124,7 +124,7 @@ void main() {
     group('When getLayoutHeight is called', () {
       test('Then should return the calculated height', () {
         // Given
-        final node = YogaNode();
+        final node = NodeProperties();
         node.setHeight(100);
         node.calculateLayout(YGUndefined, YGUndefined);
 
