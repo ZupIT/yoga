@@ -25,6 +25,8 @@ import 'package:yoga_engine/src/utils/node_helper.dart';
 
 import '../yoga_initializer.dart';
 
+mixin YogaWidget on Widget {}
+
 class YogaParentData extends ContainerBoxParentData<RenderBox> {
   bool? isLeaf;
   NodeProperties? nodeProperties;
@@ -40,7 +42,7 @@ class YogaParentData extends ContainerBoxParentData<RenderBox> {
 /// YogaNode as a direct child.
 /// Pass false to isLeaf property when this class is not placed at the end of
 /// the widget tree.
-class YogaNode extends ParentDataWidget<YogaParentData> {
+class YogaNode extends ParentDataWidget<YogaParentData> with YogaWidget {
   const YogaNode({
     Key? key,
     this.isLeaf = true,
@@ -230,11 +232,11 @@ class RenderYoga extends RenderBox
 /// Class responsible to measure each YogaNode by the NodeProperties param.
 /// Only YogaNode or YogaLayout widgets are enabled to be children.
 /// This widget has no restriction to be positioned.
-class YogaLayout extends MultiChildRenderObjectWidget {
+class YogaLayout extends MultiChildRenderObjectWidget with YogaWidget {
   YogaLayout({
     Key? key,
     required this.nodeProperties,
-    List<Widget> children = const <Widget>[],
+    List<YogaWidget> children = const <YogaWidget>[],
   }) : super(key: key, children: children);
 
   final NodeProperties nodeProperties;
