@@ -211,6 +211,7 @@ class RenderYoga extends RenderBox
         );
       }
       child.layout(childConstraints, parentUsesSize: true);
+      _helper.removeNodeReference(node);
     }
   }
 

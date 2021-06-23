@@ -47,18 +47,32 @@ void main() {
       });
     });
 
-    group('When getRenderBoxFromNode is called', () {
+    group('When removeNodeReference is called', () {
       test('Then should remove the node index', () {
+        // Given
+        final node = _mapper.yGNodeNew();
+        final renderBox = RenderYoga(yogaNode: YogaNode());
+        _nodeHelper.setRenderBoxToNode(renderBox, node);
+
+        // When
+        _nodeHelper.removeNodeReference(node);
+
+        // Then
+        expect(_nodeHelper.getRenderBoxFromNode(node), null);
+      });
+    });
+
+    group('When getRenderBoxFromNode is called', () {
+      test('Then should return the renderbox', () {
         // Given
         final node = _mapper.yGNodeNew();
         final renderBox = RenderYoga(yogaNode: YogaNode());
 
         // When
         _nodeHelper.setRenderBoxToNode(renderBox, node);
-        _nodeHelper.getRenderBoxFromNode(node);
 
         // Then
-        expect(_nodeHelper.getRenderBoxFromNode(node), null);
+        expect(_nodeHelper.getRenderBoxFromNode(node), renderBox);
       });
     });
 

@@ -33,10 +33,12 @@ class NodeHelper {
     _binding[node] = renderBox;
   }
 
-  RenderBox? getRenderBoxFromNode(Pointer<YGNode> node) {
-    final renderBox = _binding[node];
+  void removeNodeReference(Pointer<YGNode> node) {
     _binding.remove(node);
-    return renderBox;
+  }
+
+  RenderBox? getRenderBoxFromNode(Pointer<YGNode> node) {
+    return _binding[node];
   }
 
   double getLeft(Pointer<YGNode> node) {
