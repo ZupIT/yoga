@@ -59,16 +59,6 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
-        // body: Expanded(
-        //   child: Text('test'),
-        // ),
-        // body: Row(
-        //   children: [
-        //     Flexible(
-        //       child: Text('test'),
-        //     )
-        //   ],
-        // ),
         body: ColoredBox(
           color: Colors.orange,
           child: YogaLayout(
