@@ -29,8 +29,7 @@ class YogaParentData extends ContainerBoxParentData<RenderBox> {
   NodeProperties? nodeProperties;
 
   @override
-  String toString() => '${super.toString()}; '
-      'nodeProperties=$nodeProperties';
+  String toString() => '${super.toString()}; nodeProperties=$nodeProperties';
 }
 
 /// Class responsible to measure any flutter widget by the NodeProperties.
