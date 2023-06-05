@@ -3012,7 +3012,7 @@ static void YGNodelayoutImpl(
     }
 
     node->setLayoutHadOverflow(
-        node->getLayout().hadOverflow() |
+        node->getLayout().hadOverflow() ||
         (collectedFlexItemsValues.remainingFreeSpace < 0));
 
     // STEP 6: MAIN-AXIS JUSTIFICATION & CROSS-AXIS SIZE DETERMINATION

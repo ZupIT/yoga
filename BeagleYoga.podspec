@@ -15,7 +15,7 @@ Pod::Spec.new do |spec|
 
   spec.authors = 'Facebook and ZupIT'
   spec.source = {
-    :git => 'https://github.com/ZupIT/yoga.git',
+    :git => 'https://github.com/radiosphere/yoga.git',
     :tag => spec.version.to_s,
   }
   spec.platforms = { :ios => "8.0", :osx => "10.7", :tvos => "10.0", :watchos => "2.0" }
