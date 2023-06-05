@@ -31,10 +31,45 @@ A plugin that uses yoga to implements flexbox layout in Flutter.
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
-  s.dependency 'BeagleYoga'
+  s.dependency 'RSYoga'
   s.platform = :ios, '8.0'
 
   # Flutter.framework does not contain a i386 slice.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
   s.swift_version = '5.0'
+
+
+  # Subspec for rs yoga
+  s.subspec 'RSYoga' do |ss|
+
+  ss.version = '1.20.0'
+  ss.license =  { :type => 'MIT', :file => "LICENSE" }
+  ss.homepage = 'https://yogalayout.com/'
+  ss.documentation_url = 'https://yogalayout.com/docs'
+
+  ss.summary = 'Yoga is a cross-platform layout engine which implements Flexbox.'
+  ss.description = 'Yoga is a cross-platform layout engine enabling maximum collaboration within your team by implementing an API many designers are familiar with, and opening it up to developers across different platforms.'
+
+  ss.authors = 'Facebook and ZupIT and RS'
+  ss.source = {
+    :git => 'https://github.com/radiosphere/yoga.git',
+    :tag => ss.version.to_s,
+  }
+  ss.platforms = { :ios => "8.0", :osx => "10.7", :tvos => "10.0", :watchos => "2.0" }
+  ss.module_name = 'yoga'
+  ss.requires_arc = false
+  ss.pod_target_xcconfig = {
+    'DEFINES_MODULE' => 'YES'
+  }
+  ss.compiler_flags = [
+      '-fno-omit-frame-pointer',
+      '-fexceptions',
+      '-Wall',
+      '-Werror',
+      '-std=c++1y',
+      '-fPIC'
+  ]
+  ss.source_files = 'yoga/**/*.{c,h,cpp}'
+  ss.public_header_files = 'yoga/{Yoga,YGEnums,YGMacros,YGNode,YGStyle,YGValue}.h'
+  end
 end
